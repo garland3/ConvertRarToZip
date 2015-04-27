@@ -14,17 +14,22 @@ $rars = Get-ChildItem *.rar
 ForEach ($rar in $rars){  
     $outputFolder = [io.path]::GetFileNameWithoutExtension("$rar")
     Write-Output "$outputFolder"
+    
+    # Extract .rar archive
     & $app "x" "$rar" "-o$outputFolder"
+    
+    # Zip extracted folder. 
+    Write-Zip -IncludeEmptyDirectories ".\$outputFolder" "$outputFolder.zip"
 }
 
 # ---------------------------------------------------------
 # Rezip folders
 # ---------------------------------------------------------
-$folders = dir  -Directory
-ForEach ($folder in $folders){ 
-    Write-Output "$folder"
-    Write-Zip -IncludeEmptyDirectories ".\$folder" "$folder.zip"
-}
+#$folders = dir  -Directory
+#ForEach ($folder in $folders){ 
+#    Write-Output "$folder"
+#    Write-Zip -IncludeEmptyDirectories ".\$folder" "$folder.zip"
+#}
 
 
 # http://stackoverflow.com/questions/25187048/run-executable-from-powershell-script-with-parameters
