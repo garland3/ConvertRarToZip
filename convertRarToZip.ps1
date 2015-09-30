@@ -1,7 +1,13 @@
+# Copyright 2015 Anthony Garland
+# https://github.com/garland3/ConvertRarToZip
+# See License on github. 
+# Apache 2.0 License
+# 
+# To run on your computer, change the app location path for 7z.exe
 # might need to run this command first
 # set-ExecutionPolicy Unrestricted 
 # Then to run the script type
-# . .\zipExtractedRarFolders.ps1
+#  .\convertRarToZip.ps1
 
 # Will need this extension installed
 # http://pscx.codeplex.com/
