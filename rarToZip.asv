@@ -1,0 +1,90 @@
+% Get a list of all files and folders in this folder.
+targetDir = 'E:\ENGR2080\A3test';
+
+% full filepath to 7z.exe which is part of matlab
+app =  'C:\MATLAB\SupportPackages\R2013a\7zip\7z.exe';
+
+% ---------------------
+% Main code. 
+% 1. Find all files in target
+% 2. Check if it is a .rar file
+% 3. If .rar, then 
+% 4. Use commandline to call 7z.exe and unzip the .rar to a folder with
+% same name
+% 5. Zip the folder that was created to make a .zip folder with the same
+% name. 
+% --------------------
+
+files = dir(targetDir); % get all files in the target directory
+for i=1:length(files)
+    %  files(i).name % Print the name   
+    [pathstr,name,ext] = fileparts( files(i).name);  
+    ext = lower(ext);  % convert file extension to lower case, just in case some makes a .Rar file
+    
+    % if a .rar file, then unzip
+    if(strcmp(ext,'.rar'))  
+           RarName = fullfile(targetDir,files(i).name ) ;
+           unRarName = fullfile(targetDir, name);
+           
+           
+         
+           commandSyntax = sprintf('%s x "%s" -o"%s"',app, RarName,unRarName)
+           
+          status = system(commandSyntax); % run the unrar command
+         
+         zip(unRarName,unRarName)
+    end
+   
+  
+end
+% % Get a logical vector that tells which is a directory.
+% dirFlags = [files
+% % Extract only those that are directories.
+% subFolders = files(dirFlags);
+% % Print folder names to command window.
+% % 
+% % count = 1;
+% % % Get folders in the array 1 by 1
+% % % ignore the first two directories (. and ..)
+% % for i = 3:length(subFolders)
+% %     % fprintf( '%s\n', subFolders(i).name); % Print the name
+% %      
+% %      studentFolder = fullfile(targetDir,subFolders(i).name);
+% %      fprintf( '%s\n',   studentFolder);      
+% %      % Get a list of all the files a student submitted
+% %      filelist = getAllFiles(studentFolder);         
+% %      fileNum = 1;
+%  for j =1:length( filelist)
+% 
+%      % seperate each file into its path, name, and extension type
+%      pathOriginal = char(filelist(j));
+%      [pathstr,name,ext] = fileparts(pathOriginal);         
+%      % covert the extension to lower case
+%      ext = lower(ext);         
+%      % check if a .stl file
+%      if(strcmp(ext,'.stl'))             
+%           % -------------------------------
+%           % Rename the file 
+%           % username)_file#
+%           % -------------------------------             
+%          renamedFileName = sprintf('%s_file%i.stl',char(subFolders(i).name),fileNum);
+%          fileNum = fileNum+1;
+%          renamedFileNamePath = fullfile(pathstr,renamedFileName);             
+%          if(doRenameFiles==1)
+%             movefile(pathOriginal,renamedFileNamePath);
+% 
+%          end             
+% 
+%          % --------------------
+%          % Save the .stl file in a list
+%          % ----------------
+%          stl = stlFile;
+%          stl.username = char(subFolders(i).name);
+%          stl.originalPath = pathOriginal;
+%          stl.renamedPath = renamedFileNamePath;
+%           stl.renamedFileName = renamedFileName;
+% 
+%          listOfSTLFiles(count) = stl;
+%          count = count+1;
+%      end
+%  end
