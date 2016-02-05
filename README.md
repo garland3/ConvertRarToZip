@@ -1,2 +1,6 @@
 # ConvertRarToZip
-Using Windows powershell, this script converts .rar archives to .zip folders
+This script converts .rar archives to .zip folders. 
+
+I wrote it in two languages
+1. Powershell
+2. Matlab
