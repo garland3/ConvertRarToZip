@@ -2,10 +2,10 @@
 % Author: Anthony Garland
 
 % Folder containing some .rar files that you want to conver to .zip files
-targetDir = 'E:\ENGR2080\A3test';
+targetDir = 'C:\Users\garla\Desktop\A5\Combined';
 
-% full filepath to 7z.exe which is part of matlab
-app =  'C:\MATLAB\SupportPackages\R2013a\7zip\7z.exe';
+% full filepath to 7z.exe 
+app =  'C:\Program Files\7-Zip\7z.exe';
 
 % ---------------------
 % Main code.
@@ -28,7 +28,7 @@ for i=1:length(files)
     if(strcmp(ext,'.rar'))
         RarName = fullfile(targetDir,files(i).name ) ;
         unRarName = fullfile(targetDir, name);
-        commandSyntax = sprintf('%s x "%s" -o"%s"',app, RarName,unRarName)
+        commandSyntax = sprintf('"%s" x "%s" -o"%s"',app, RarName,unRarName)
         
         % Run the unRar command, then run the zip command
         status = system(commandSyntax); % run the unrar command
