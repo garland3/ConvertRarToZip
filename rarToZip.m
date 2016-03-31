@@ -2,7 +2,7 @@
 % Author: Anthony Garland
 
 % Folder containing some .rar files that you want to conver to .zip files
-targetDir = 'C:\Users\garla\Desktop\A5\Combined';
+targetDir = 'C:\Users\garla\Desktop\ENGR2080StudentWork\A8';
 
 % full filepath to 7z.exe 
 app =  'C:\Program Files\7-Zip\7z.exe';
@@ -24,6 +24,7 @@ for i=1:length(files)
     [pathstr,name,ext] = fileparts( files(i).name);
     ext = lower(ext);  % convert file extension to lower case, just in case some makes a .Rar file
     
+    try
     % if a .rar file, then unzip
     if(strcmp(ext,'.rar'))
         RarName = fullfile(targetDir,files(i).name ) ;
@@ -34,4 +35,8 @@ for i=1:length(files)
         status = system(commandSyntax); % run the unrar command
         zip(unRarName,unRarName);
     end  
+    
+    catch
+         errorSyntax = sprintf(' Error encountered for %s',files(i).name)
+    end
 end
