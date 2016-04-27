@@ -2,7 +2,7 @@
 % Author: Anthony Garland
 
 % Folder containing some .rar files that you want to conver to .zip files
-targetDir = 'C:\Users\garla\Desktop\ENGR2080StudentWork\A8';
+targetDir = 'F:\ENGR2080\p3Unzipped';
 
 % full filepath to 7z.exe 
 app =  'C:\Program Files\7-Zip\7z.exe';
